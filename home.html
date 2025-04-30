@@ -90,7 +90,62 @@
         invite you to experience the difference in care that sets us apart and to join us on the journey to better
         health. Your well-being is our mission, and we are honored to be your healthcare provider of choice.</p>
     </div>
-
+    
+    <div class="testimonial-section">
+      <h2>Patients Speak</h2>
+      <div class="testimonial-carousel">
+        <div class="testimonial-track">
+          <div class="testimonial-item">
+            <p>"The doctors and staff were extremely professional and caring."</p>
+            <div class="testimonial-author">— Priya Sharma</div>
+          </div>
+          <div class="testimonial-item">
+            <p>"State-of-the-art facilities and compassionate care throughout."</p>
+            <div class="testimonial-author">— Ravi Verma</div>
+          </div>
+          <div class="testimonial-item">
+            <p>"They made a stressful time so much easier for my family."</p>
+            <div class="testimonial-author">— Meera Iyer</div>
+          </div>
+          <div class="testimonial-item">
+            <p>"Truly grateful for the team’s prompt and precise diagnosis."</p>
+            <div class="testimonial-author">— Anil Kumar</div>
+          </div>
+          <div class="testimonial-item">
+            <p>"Clean, efficient, and incredibly kind staff. Highly recommend."</p>
+            <div class="testimonial-author">— Swati Desai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="contact-section">
+      <h2>Contact Us</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <p><strong>Address:</strong><br>
+            Apollo Hospital, Jubilee Hills,<br>
+            Hyderabad, Telangana 500033, India
+          </p>
+          <p><strong>Phone:</strong> <a href="tel:+914066777777">+91 40 6677 7777</a></p>
+          <p><strong>Email:</strong> <a href="mailto:info@apollohospitals.com">info@apollohospitals.com</a></p>
+        </div>
+        <div class="contact-map">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.427152653941!2d78.40045721487632!3d17.42972708804879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb973e2a2c3a15%3A0xf65096a24e2b5d4!2sApollo%20Hospitals!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="250" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    
+    
   </main>
   <script>
     let slideIndex = 0;
@@ -113,6 +168,19 @@
       setTimeout(showSlides, 5000); // Change image every 5 seconds
     }
   </script>
+
+<script>
+  const track = document.querySelector('.testimonial-track');
+  let index = 0;
+  function moveToNext() {
+    index++;
+    if (index > 2) index = 0; // Adjust for 5 items, 3 visible
+    track.style.transform = 'translateX(' + (-index * 33.3333) + '%)';
+  }
+  setInterval(moveToNext, 4000); // scroll every 4 seconds
+</script>
+
+
 </body>
 
 </html>
