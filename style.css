@@ -53,27 +53,167 @@ hr{
 .Appointment{
     background-color: #048DDD;
 }
+.popup {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.popup-content {
+  background-color: #fff;
+  margin: auto;
+  bottom: 60px;
+  padding: 20px;
+  border-radius: 16px;
+  width: 537px;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 44px;
+  cursor: pointer;
+}
+
+.call-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  width: 180px;
+  background-color: #DE2A1C;
+  color: #fff;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.call-button:hover {
+  background-color: darkred;
+  color: #fff;
+}
+/* Close button */
+.close-contact {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+/* Hospital Info */
+.hospital-info {
+  text-align: center;
+}
+.hospital-logo {
+  width: 172.56px;
+  height: 181px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.popup-content h2{
+  padding: 0px;
+  margin: 0px;
+}
+.close-appointment {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+#appointmentForm{
+  padding: 20px;
+}
+#appointmentForm label{
+  text-align: left;
+}
+/* Form inputs */
+#appointmentForm input,
+#appointmentForm textarea {
+  width: 462px;
+  height: 45px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+
+  width: 490px;
+  height: 45px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submit-button:hover {
+  background-color: #0056b3;
+}
+.app{
+  display: flex;
+  justify-content: space-between;
+  width: 395px;
+  height: 56px;
+  margin-bottom:40px ;
+}
+.date  , .shift{
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  
+}
+#appointmentForm #date{
+  width: 177px;
+  height: 29px;
+  
+}
+.shift{
+  margin-left: 105px;
+}
+.shift select{
+  
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 177px;
+  height: inherit;
+  
+}
+.app input , .app option{
+  background-color: D9D9D9;
+  color: #000000;
+}
 /******Home Page******************/
 main{
    padding-top: 10px;
     align-items: center;
 }
+/**************Slideshow***************/
 .slideshow-container {
-   
     width: 1300px;
     height: 527px;
     position: relative;
-   
   }
- 
   .mySlides {
     display: none;
-    
   }
   .mySlides img{
     border-radius:8px ;
   }
-
+  /********prev and next button***********/
   .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -88,21 +228,14 @@ main{
     border-radius: 0 3px 3px 0;
     user-select: none;
   }
-  
-
   .next {
     right: 0;
     border-radius: 3px 0 0 3px;
   }
-  
-
   .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
   }
-  
- 
-  
-  
+  /**********dot**********************/
   .dot {
     cursor: pointer;
     height: 15px;
@@ -113,22 +246,20 @@ main{
     display: inline-block;
     transition: background-color 0.6s ease;
   }
-  
-  .dot .active, .dot:hover {
+  .dot.active, .dot:hover {
     background-color: #717171;
   }
-  
-
   .fade {
     animation-name: fade;
     animation-duration: 1.5s;
   }
-  
   @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
   }
+  /************Choose us**********************/
   .chooseus p{
+    margin-top: 50px;
     color: #666666;
     width: 80%;
   }
@@ -137,107 +268,14 @@ main{
     justify-content: space-between;
   }
   .chooseus h2{
-    align-items: center;
+    margin: 0px;
+    padding: 0px;
   }
   .chooseus img{
     border-radius: 8px;
     margin:0 0 0 30px;
   }
-  /*Feedback Section*/
   
-  .testimonial-section {
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-  }
-  
-  .testimonial-section h2 {
-    font-size: 30px;
-    margin-bottom: 30px;
-    color: #2c3e50;
-  }
-  
-  .testimonial-carousel {
-    overflow: hidden;
-    max-width: 1000px;
-    margin: 0 auto;
-    position: relative;
-  }
-  
-  .testimonial-track {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-  
-  .testimonial-item {
-    flex: 0 0 33.3333%;
-    box-sizing: border-box;
-    padding: 20px;
-  }
-  
-  .testimonial-item p {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    font-size: 16px;
-    color: #333;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    position: relative;
-    min-height: 120px;
-  }
-  
-  .testimonial-author {
-    margin-top: 12px;
-    font-weight: bold;
-    color: #555;
-    font-size: 14px;
-  }
-  
-
- /* Contact Us*/  
- 
- .contact-section {
-  padding: 40px 20px;
-  background-color: #f1f1f1;
-  text-align: center;
-}
-
-.contact-section h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #222;
-}
-
-.contact-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  align-items: flex-start;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.contact-info {
-  flex: 1 1 300px;
-  font-size: 16px;
-  text-align: left;
-  color: #333;
-  line-height: 1.8;
-}
-
-.contact-info a {
-  color: #007BFF;
-  text-decoration: none;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-
-.contact-map {
-  flex: 1 1 400px;
-}
 
  
 /********************************************************/
@@ -271,23 +309,23 @@ main{
 .login h2{
   color: #000000;
 }
+/*****************login form ******************/
 form{
     display: flex;
     flex-direction: column;
 }
 input{
-    width: 442px;
-    height: 45px;
+  width: 442px;
+  height: 45px;
     border-radius: 8px;
     border:1px solid #666666;
-
 }
 label{
     padding: 10px;
 }
 .login button{
-    margin-top: 40px;
-    width: 450px;
+  margin-top: 40px;
+  width: 450px;
     height: 48px;
     background-color: #048DDD;
     border: none;
@@ -297,4 +335,87 @@ label{
 .login a{
   color: #ffffff;
   text-decoration: none;
+}
+/***************************************************/
+/*****************Patient's Corner***********************/
+.head{
+  font-size: x-large;
+  margin-top: 20px;
+}
+.cards{
+  width: 555px;
+  border-radius: 16px;
+  box-shadow: 0 0px 15px 3px rgba(0,0,0,25%), 0 0px 15px 3px rgba(0,0,0,25%);
+  padding-bottom: 30px;
+  padding: 10px 10px;
+  margin: 10px;
+  margin-top: 30px;
+}
+.card-board{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.cards h3{
+  text-align: center;
+  font-size: 25px;
+  padding: none;
+  margin: none;
+}
+.cards h4{
+  color: #666666;
+  padding: none;
+  margin: none;
+}
+.cards hr{
+  margin: none;
+  padding: none;
+}
+.card-content{
+  padding-left: 20px;
+}
+.DDP , .price{
+  display: flex;
+  justify-content: space-between;
+}
+.price button{
+  width: 63px;
+  height: 30px;
+  border-radius: 8px;
+  margin-top: 7px;
+  background-color: #666666;
+  border: none;
+  color: #ffffff;
+  margin:none;
+  font-size: 12px;
+}
+.price .active{
+  background-color: #048DDD;
+}
+.price p{
+  padding: 5px;
+}
+/**********************************************************/
+/************************ABOUT US****************************/
+
+section{
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+.image img{
+  border-radius: 8px;
+  margin: 10px;
+}
+.content{
+  width: 665px;
+  height: 470px;
+}
+section h3{
+  font-size: 25px;
+}
+section p{
+  color: #666666;
+  font-size: 20px;
 }

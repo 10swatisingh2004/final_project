@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            
+            <div class="logo" style="padding-right: 90px;">
+                <img src="imgs/ava.png" alt="logo" width="70px">
+                <h1 class="head">Hi, User</h1>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="login.html" class="active">Records</a></li>
+                    <li><a href="outstanding.html">Outstanding Dues</a></li>
+                    <li><a href="appointment.html">Appointment</a></li>
+                    <li><a href="#" id="openContactPopup">Contact Us</a></li>
+               
+                </ul>
+           
+            </div>
+        </div>
+        <div class="btn">
+            <button class="ambulance" id="openPopup" >Call an Ambulance</button>
+            <button class="Appointment" id="openAppointmentPopup">Book an Appointment</button>
+        </div>
+        <div id="ambulancePopup" class="popup">
+            <div class="popup-content">
+              <span class="close">&times;</span>
+              <h2>Emergency Ambulance Service</h2>
+              <p id="locationText">Fetching your location...</p>
+    <!-- Map will appear here -->
+    <div id="map" style="width: 439px; margin-left: 9%; margin-top: 10px; border-radius:10px; overflow:hidden;"></div>
+    <a href="tel:+91000000000" class="call-button">Call</a>
+              <a href="#" class="call-button">Request Ambulance</a>
+            </div>
+          </div>
+          <!--CONTACT US-->
+<!-- The Contact Popup Modal -->
+<div id="contactPopup" class="popup">
+    <div class="popup-content">
+      <span class="close-contact">&times;</span>
+        <!-- Hospital Info -->
+        <div class="hospital-info">
+            <img src="imgs/logo.jpeg" alt="Hospital Logo" class="hospital-logo">
+            <p ><i class="fas fa-phone" style="font-size: 38px;"></i> +91-XXXXXXXXXX</p>
+            <p><i class="fas fa-envelope" style="font-size: 38px;"></i> sahuhospital@gmail.com</p>
+        </div>
+<!-- Hospital Map -->
+<div id="hospital-map" style="width: 406px; margin-left: 13%; margin-top: 10px; border-radius:10px; overflow:hidden;">
+  <iframe 
+          width="100%" 
+          height="250" 
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/place/Dr.Sahu+Hospital/@26.9035522,81.0048557,17z/data=!4m14!1m7!3m6!1s0x399959002697b1a5:0x850a3f1c0125a65c!2sDr.Sahu+Hospital!8m2!3d26.9035522!4d81.0048557!16s%2Fg%2F11wvrm6171!3m5!1s0x399959002697b1a5:0x850a3f1c0125a65c!8m2!3d26.9035522!4d81.0048557!16s%2Fg%2F11wvrm6171?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D">
+        </iframe>
+    </div>
+  </div>
+</div>
+        <div id="appointmentPopup" class="popup">
+            <div class="popup-content">
+              <span class="close-appointment">&times;</span>
+              <h2>Book an Appointment</h2>
+          
+              <form id="appointmentForm">
+                <label for="patientName">Name</label>
+                <input type="text" id="patientName" required>
+                <label for="patientPhone">Contact No.</label>
+                <input type="tel" id="patientPhone" required>
+                <label for="patientMessage">Description of Symptoms</label>
+                <textarea id="patientMessage" required></textarea>
+                <div class="app">
+                  <div class="date">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date">
+                  </div>
+                  <div class="shift">
+                    <label for="shift">Shift</label>
+                    <select name="shift" id="shift">
+                      <option value="ss">Select the shift</option>
+                      <option value="first">9am-12pm</option>
+                      <option value="second">1am-3pm</option>
+                      <option value="third">4am-6pm</option>
+                    </select>
+                  </div>
+                </div>
+               
+                
+                <button type="submit" class="submit-button">Continue</button>
+              </form>
+            </div>
+          </div>
+    </header>
+    <main class="card-board">
+        <div class="cards">
+            <h3>Diagnosis</h3>
+            <hr>
+            <div class="card-content">
+                <h4>Symptoms</h4>
+                <ul>
+                    <li>Symptom 1</li>
+                    <li>Symptom 2</li>
+                    <li>Symptom 3</li>
+                  
+                </ul>
+             
+                <h4>Medicines</h4>
+                <ul>
+                    <li>Medicine 1</li>
+                    <li>Medicine 2</li>
+                    <li>Medicine 3</li>
+                    
+                </ul>
+            </div>
+           
+         
+            <hr>
+            <div class="DDP">
+                <div class="date">
+                    <p>xx/xx/xxxx</p>
+                </div>
+                <div class="price">
+                    <p>Price/-</p>
+                    <button class="active">Pay</button>
+                </div>
+            </div>
+        </div>
+        <div class="cards">
+            <h3>Diagnosis</h3>
+            <hr>
+            <div class="card-content">
+                <h4>Symptoms</h4>
+                <ul>
+                    <li>Symptom 1</li>
+                    <li>Symptom 2</li>
+                    <li>Symptom 3</li>
+                  
+                </ul>
+             
+                <h4>Medicines</h4>
+                <ul>
+                    <li>Medicine 1</li>
+                    <li>Medicine 2</li>
+                    <li>Medicine 3</li>
+                    
+                </ul>
+            </div>
+            <hr>
+            <div class="DDP">
+                <div class="date">
+                    <p>xx/xx/xxxx</p>
+                </div>
+                <div class="price">
+                    <p>Price/-</p>
+                    <button>Pay</button>
+                </div>
+            </div>
+        </div>
+        <div class="cards">
+            <h3>Diagnosis</h3>
+            <hr>
+            <div class="card-content">
+                <h4>Symptoms</h4>
+                <ul>
+                    <li>Symptom 1</li>
+                    <li>Symptom 2</li>
+                    <li>Symptom 3</li>
+                  
+                </ul>
+             
+                <h4>Medicines</h4>
+                <ul>
+                    <li>Medicine 1</li>
+                    <li>Medicine 2</li>
+                    <li>Medicine 3</li>
+                    
+                </ul>
+            </div>
+            <hr>
+            <div class="DDP">
+                <div class="date">
+                    <p>xx/xx/xxxx</p>
+                </div>
+                <div class="price">
+                    <p>Price/-</p>
+                    <button>Pay</button>
+                </div>
+            </div>
+        </div>
+        <div class="cards">
+            <h3>Diagnosis</h3>
+            <hr>
+            <div class="card-content">
+                <h4>Symptoms</h4>
+                <ul>
+                    <li>Symptom 1</li>
+                    <li>Symptom 2</li>
+                    <li>Symptom 3</li>
+                  
+                </ul>
+             
+                <h4>Medicines</h4>
+                <ul>
+                    <li>Medicine 1</li>
+                    <li>Medicine 2</li>
+                    <li>Medicine 3</li>
+                    
+                </ul>
+            </div>
+            <hr>
+            <div class="DDP">
+                <div class="date">
+                    <p>xx/xx/xxxx</p>
+                </div>
+                <div class="price">
+                    <p>Price/-</p>
+                    <button>Pay</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Open Contact Popup
+document.getElementById("openContactPopup").onclick = function() {
+  document.getElementById("contactPopup").style.display = "block";
+};
+
+// Close Contact Popup
+document.querySelector(".close-contact").onclick = function() {
+  document.getElementById("contactPopup").style.display = "none";
+};
+
+// Close when clicking outside
+window.onclick = function(event) {
+  if (event.target == document.getElementById("contactPopup")) {
+    document.getElementById("contactPopup").style.display = "none";
+  }
+};
+        // Open ambulance popup
+document.getElementById("openPopup").onclick = function() {
+ document.getElementById("ambulancePopup").style.display = "block";
+ getLocation();
+};
+
+// Close ambulance popup
+document.querySelector(".close").onclick = function() {
+ document.getElementById("ambulancePopup").style.display = "none";
+};
+
+// Close popup when clicking outside
+window.onclick = function(event) {
+ if (event.target == document.getElementById("ambulancePopup")) {
+   document.getElementById("ambulancePopup").style.display = "none";
+ }
+};
+
+// Get user's location
+function getLocation() {
+ if (navigator.geolocation) {
+   navigator.geolocation.getCurrentPosition(showPosition, showError, {timeout: 10000});
+ } else {
+   showBlankMap();
+   document.getElementById("locationText").innerHTML = "Geolocation not supported by browser.";
+ }
+}
+
+function showPosition(position) {
+ const lat = position.coords.latitude;
+ const lon = position.coords.longitude;
+ document.getElementById("locationText").innerHTML = `Your Location: (${lat.toFixed(4)}, ${lon.toFixed(4)})`;
+
+ // Show user's location on map
+ const mapIframe = `<iframe 
+   width="100%" 
+   height="300" 
+   style="border:0"
+   loading="lazy"
+   allowfullscreen
+   referrerpolicy="no-referrer-when-downgrade"
+   src="https://www.google.com/maps?q=${lat},${lon}&hl=es;z=14&output=embed">
+   </iframe>`;
+
+ document.getElementById("map").innerHTML = mapIframe;
+}
+
+function showError(error) {
+ document.getElementById("locationText").innerHTML = "Location not available.";
+ showBlankMap();
+}
+
+// Show blank map
+function showBlankMap() {
+ const blankIframe = `<iframe 
+   width="100%" 
+   height="300" 
+   style="border:0"
+   loading="lazy"
+   allowfullscreen
+   referrerpolicy="no-referrer-when-downgrade"
+   src="https://www.google.com/maps?q=0,0&hl=es;z=1&output=embed">
+   </iframe>`;
+
+ document.getElementById("map").innerHTML = blankIframe;
+}
+
+//appointment js
+// Open Popup
+document.getElementById("openAppointmentPopup").onclick = function () {
+ document.getElementById("appointmentPopup").style.display = "block";
+};
+
+// Close Popup
+document.querySelector(".close-appointment").onclick = function () {
+ document.getElementById("appointmentPopup").style.display = "none";
+};
+
+// Close when clicking outside
+window.onclick = function (event) {
+ if (event.target == document.getElementById("appointmentPopup")) {
+   document.getElementById("appointmentPopup").style.display = "none";
+ }
+};
+
+// Form Submission
+document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+ e.preventDefault();
+
+ const name = document.getElementById("patientName").value;
+ const phone = document.getElementById("patientPhone").value;
+ const dept = document.getElementById("department").value;
+ const date = document.getElementById("appointmentDate").value;
+ const time = document.getElementById("appointmentTime").value;
+ const message = document.getElementById("patientMessage").value;
+
+ console.log("Appointment Details:", { name, phone, dept, date, time, message });
+
+ alert("Appointment booked successfully!");
+ this.reset();
+ document.getElementById("appointmentPopup").style.display = "none";
+});
+
+   </script>
+</body>
+</html>
