@@ -109,7 +109,7 @@
           <img src="imgs/img1.jpeg" style="width: 1310px;height: 527px;">
         </div>
         <div class="mySlides fade">
-          <img src="imgs/img12.jpeg" style="width: 1310px;height: 527px;">
+          <img src="imgs/img31.jpg" style="width: 1310px;height: 527px;">
         </div> 
     <!-- Next and previous buttons -->
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -152,16 +152,53 @@
   
       <!-- Image -->
       <div class="image-container">
-        <video width="240" height="360" controls>
-          <source src="imgs/Video1.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline id="background-video" width="300" height="480" controls>
+          <source src="imgs/Video1WWO.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
   </div>
   
-   
-
+  <!-- Feedback Section -->
+  <div class="testimonial-section">
+    <h2>Patients Speak</h2>
+    <div class="testimonial-carousel">
+      <div class="testimonial-track">
+        <div class="testimonial-item">
+          <p>"Amazing service! Highly recommend."</p>
+          <span>- Patient A</span>
+        </div>
+        <div class="testimonial-item">
+          <p>"Quick delivery and excellent quality."</p>
+          <span>- Patient B</span>
+        </div>
+        <div class="testimonial-item">
+          <p>"Customer support was very helpful."</p>
+          <span>- Patient C</span>
+        </div>
+        <div class="testimonial-item">
+          <p>"Easy to use platform."</p>
+          <span>- Patient D</span>
+        </div>
+        <div class="testimonial-item">
+          <p>"Will buy again!"</p>
+          <span>- Patient E</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="feedback-form-container">
+    <h3>Share Your Feedback</h3>
+    <form action="#" method="post">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <textarea name="feedback" placeholder="Write your feedback here..." rows="4" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  
+<!-- Contact Us Section -->
   <div class="contact-section">
   <h2>Contact Us</h2>
   <div class="contact-content">
@@ -333,6 +370,20 @@ document.getElementById("appointmentForm").addEventListener("submit", function (
 });
 
     </script>
+
+<script>
+  const track = document.querySelector('.testimonial-track');
+  let index = 0;
+
+  function moveToNext() {
+    index++;
+    if (index > 2) index = 0;
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+  }
+
+  setInterval(moveToNext, 3000); // Change slide every 3 seconds
+</script>
+
 </body>
 
 </html>
