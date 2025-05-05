@@ -16,7 +16,6 @@
             <div class="nav">
                 <ul>
                     <li><a href="login.html">Patient’s Corner</a></li>
-                    <li><a href="achievement.html">Achievements</a></li>
                     <li><a href="library.html">Health Library</a></li>
                     <li><a href="#" id="openContactPopup">Contact Us</a></li>
                     <li><a href="about.html">About Us</a></li>
@@ -124,36 +123,87 @@
   </div>
 <!--Choose us-->
   <br>
-  <div class="chooseus">
-    <div class="head">
-      <h3>Why to Choose Us?</h3>
-      <img src="imgs/img3.jpeg" alt="" width="147px" height="181px">
+  <br>
+  <div class="what-we-offer">
+    <h3>What We Offer</h3>
+    <div class="content-container">
+      <div class="offerings">
+        <div class="offer-item">
+          <i class="fas fa-user-clock"></i>
+          <p>24/7 Emergency</p>
+        </div>
+        <div class="offer-item">
+          <i class="fas fa-user-doctor"></i>
+          <p>Experienced Team</p>
+        </div>
+        <div class="offer-item">
+          <i class="fas fa-hospital"></i>
+          <p>State-of-the-Art Facilities</p>
+        </div>
+         
+        <div class="offer-item">
+          <i class="fas fa-ambulance"></i>
+          <p>Ambulance Services</p>
+        </div>
+        <div class="offer-item">
+          <i class="fas fa-stethoscope"></i>
+          <p>Specialized Care</p>
+        </div>
+      </div>
     </div>
-    <p>At our hospital, we understand that choosing a healthcare provider is one of the most important decisions you can make for yourself and your loved ones. That’s why we are committed to being your trusted partner in health, offering a comprehensive range of services designed to meet the diverse needs of our community. Our team of highly skilled and compassionate healthcare professionals is dedicated to delivering exceptional patient care. From our experienced nurses to our support staff, every member of our team is focused on providing personalized treatment that respects your unique needs and preferences. We believe in treating the whole person, not just the illness, and we strive to create a warm and welcoming environment where you feel valued and cared for. We are proud to utilize the latest advancements in medical technology and evidence-based practices to ensure that you receive the highest standard of care. Our state-of-the-art facilities are equipped with cutting-edge diagnostic and treatment options, allowing us to provide timely and effective interventions. Whether you require routine check-ups, specialized treatments, or emergency care, you can trust that we are here for you every step of the way. Moreover, we are deeply committed to the health and well-being of our community. When you choose our hospital, you are choosing a place where compassion meets excellence, where your health is our priority, and where we are dedicated to making a positive impact on the lives of our patients and the community we serve. We invite you to experience the difference in care that sets us apart and to join us on the journey to better health. Your well-being is our mission, and we are honored to be your healthcare provider of choice.</p>
-  </div>
+    <div class="contact-section">
+      <img src="imgs/logo.png" alt="" width="90px">
+      <div class="contact-content">
+       
+        <div class="contact-info">
+          <div class="foot">
+            <ul>
+              <li><a href="login.html">Patient’s Corner</a></li>
+              <li><a href="achievement.html">Achievements</a></li>
+              <li><a href="library.html">Health Library</a></li>
+              <li><a href="#" id="openContactPopup">Contact Us</a></li>
+              <li><a href="about.html">About Us</a></li>
+          </ul>
+          </div>
+          <p><strong>Registration No:</strong>XXXXXXXXXXX</p>
+          <p><strong>Address:</strong>
+            Manas Square, Opp - Sai Tower,
+            Sugamau, Indira Nagar,<br>
+            Lucknow, Uttar Pradesh, India
+          </p>
+          <p><strong>Phone:</strong>
+            <a href="tel:+917518351847" >+91-7518351847</a><br>
+            <a href="tel:+919889065072" style="margin-left: 5%;">+91-9889065072</a>
+          </p>
+          
+        </div>
+      </div>
+    </div>
    </main>
    <!--JavaScript-->
    <script>
    //Slideshow script
+
     let slideIndex = 0;
     showSlides();
-    
+
     function showSlides() {
       let i;
       let slides = document.getElementsByClassName("mySlides");
       let dots = document.getElementsByClassName("dot");
       for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+        slides[i].style.display = "none";
       }
       slideIndex++;
-      if (slideIndex > slides.length) {slideIndex = 1}    
+      if (slideIndex > slides.length) { slideIndex = 1 }
       for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
       }
-      slides[slideIndex-1].style.display = "block";  
-      dots[slideIndex-1].className += " active";
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
       setTimeout(showSlides, 5000); // Change image every 5 seconds
     }
+
   // Open ambulance popup
 document.getElementById("openPopup").onclick = function() {
   document.getElementById("ambulancePopup").style.display = "block";
@@ -273,6 +323,7 @@ document.getElementById("appointmentForm").addEventListener("submit", function (
 });
 
     </script>
+
 </body>
 
 </html>

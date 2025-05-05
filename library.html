@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      body {
+          font-family: "Hanken Grotesk", sans-serif;
+        
+          margin: 0;
+          padding: 0;
+          color: #666666;
+      }
+
+      header {
+          background: white;
+          color: black;
+          padding: 1.5rem;
+          text-align: center;
+      }
+
+      .container {
+          padding: 2rem;
+          max-width: 1200px;
+          margin: auto;
+      }
+
+      .search-bar input {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+      }
+
+      .tabs {
+          margin-bottom: 2rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+      }
+
+      .tab {
+          background: #2a7f62;
+          color: white;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+      }
+
+      .tab.active {
+          background: #17664e;
+      }
+      
+      .disease-card {
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          margin-bottom: 1.5rem;
+          padding: 1.5rem;
+      }
+
+      .disease-card h2 {
+          color: #2a7f62;
+          margin-top: 0;
+      }
+
+      .external-link {
+          margin-top: 1rem;
+          display: inline-block;
+          color: #0077cc;
+          text-decoration: none;
+      }
+
+      .external-link:hover {
+          text-decoration: underline;
+      }
+  </style>
+
+</head>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="imgs/logo.jpeg" alt="logo" width="100px">
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="login.html">Patient’s Corner</a></li>
+                    <li><a href="library.html" class="active">Health Library</a></li>
+                    <li><a href="#" id="openContactPopup">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+        <div class="btn">
+            <button class="ambulance" id="openPopup">Call an Ambulance</button>
+            <button class="Appointment" id="openAppointmentPopup">Book an Appointment</button>
+        </div>
+
+        <!-- Ambulance Popup -->
+        <div id="ambulancePopup" class="popup">
+            <div class="popup-content">
+                <span class="close">&times;</span>
+                <h2>Emergency Ambulance Service</h2>
+                <p id="locationText">Fetching your location...</p>
+                <div id="map" style="width: 439px; margin-left: 9%; margin-top: 10px; border-radius:10px; overflow:hidden;"></div>
+                <a href="tel:+91000000000" class="call-button">Call Now</a>
+                <a href="#" class="call-button">Request Ambulance</a>
+            </div>
+        </div>
+
+        <!-- Contact Popup -->
+        <div id="contactPopup" class="popup">
+            <div class="popup-content">
+                <span class="close-contact">&times;</span>
+                <div class="hospital-info">
+                    <img src="imgs/logo.jpeg" alt="Hospital Logo" class="hospital-logo">
+                    <p><i class="fas fa-phone" style="font-size: 38px;"></i> +91-7518351847, +91-9889065072</p>
+                    <p><i class="fas fa-envelope" style="font-size: 38px;"></i> drsahuhospital@gmail.com</p>
+                </div>
+                <div id="map" style="width: 406px; margin-left: 13%; margin-top: 10px; border-radius:10px; overflow:hidden;">
+                    <iframe width="100%" height="250" style="border:0" loading="lazy" allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps?q=Manas+Square,+Opp+Sai+Tower,+Sugamau,+Indira+Nagar,+Lucknow&output=embed">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Popup -->
+        <div id="appointmentPopup" class="popup">
+            <div class="popup-content">
+                <span class="close-appointment">&times;</span>
+                <h2>Book an Appointment</h2>
+                <form id="appointmentForm">
+                    <label for="patientName">Name</label>
+                    <input type="text" id="patientName" required>
+                    <label for="patientPhone">Contact No.</label>
+                    <input type="tel" id="patientPhone" required>
+                    <label for="patientMessage">Description of Symptoms</label>
+                    <textarea id="patientMessage" required></textarea>
+                    <div class="app">
+                        <div class="date">
+                            <label for="date">Date</label>
+                            <input type="date" name="date" id="date">
+                        </div>
+                        <div class="shift">
+                            <label for="shift">Shift</label>
+                            <select name="shift" id="shift">
+                                <option value="ss">Select the shift</option>
+                                <option value="first">9am-12pm</option>
+                                <option value="second">1am-3pm</option>
+                                <option value="third">4am-6pm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-button">Continue</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="container">
+      <!-- Search -->
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by name, symptom, or keyword..." onkeyup="filterDiseases()">
+      </div>
+    
+      <!-- Category Tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="filterCategory('all')">All</button>
+        <button class="tab" onclick="filterCategory('cardiac')">Cardiac (Heart)</button>
+        <button class="tab" onclick="filterCategory('neurological')">Neurological</button>
+        <button class="tab" onclick="filterCategory('skin')">Skin</button>
+        <button class="tab" onclick="filterCategory('digestive')">Digestive</button>
+        <button class="tab" onclick="filterCategory('respiratory')">Respiratory</button>
+        <button class="tab" onclick="filterCategory('endocrine')">Endocrine</button>
+        <button class="tab" onclick="filterCategory('musculoskeletal')">Musculoskeletal</button>
+        <button class="tab" onclick="filterCategory('urinary')">Urinary</button>
+      </div>
+    
+      <div id="diseaseContainer">
+        <!-- Cardiac Diseases -->
+        <div class="disease-card cardiac">
+          <h2>Coronary Artery Disease (CAD)</h2>
+          <p><strong>Description:</strong> Narrowing of coronary arteries due to plaque buildup, which can reduce blood flow to the heart.</p>
+          <p><strong>General Symptoms:</strong> Chest pain (angina), shortness of breath, fatigue, dizziness.</p>
+          <p><strong>General Precautions:</strong> Regular exercise, healthy diet, quit smoking, manage stress, monitor cholesterol levels.</p>
+          <p><strong>Medications:</strong> Statins, aspirin, beta-blockers, calcium channel blockers, nitrates.</p>
+          <a class="external-link" href="https://www.cdc.gov/ncbddd/stroke/facts.html" target="_blank">Learn More at CDC</a>
+        </div>
+
+        <div class="disease-card cardiac">
+          <h2>Heart Failure</h2>
+          <p><strong>Description:</strong> A condition in which the heart can't pump blood effectively, leading to fluid buildup in the body.</p>
+          <p><strong>General Symptoms:</strong> Shortness of breath, fatigue, swollen legs, rapid or irregular heartbeat.</p>
+          <p><strong>General Precautions:</strong> Low-salt diet, regular monitoring of blood pressure, avoid alcohol, maintain a healthy weight.</p>
+          <p><strong>Medications:</strong> ACE inhibitors, beta-blockers, diuretics, aldosterone antagonists.</p>
+          <a class="external-link" href="https://www.cdc.gov/ncbddd/stroke/facts.html" target="_blank">Learn More at CDC</a>
+        </div>
+    
+        <div class="disease-card cardiac">
+          <h2>Arrhythmia (e.g., Atrial Fibrillation)</h2>
+          <p><strong>Description:</strong> An abnormal heart rhythm that can cause irregular and often rapid heartbeats.</p>
+          <p><strong>General Symptoms:</strong> Palpitations, shortness of breath, dizziness, fatigue.</p>
+          <p><strong>General Precautions:</strong> Limit alcohol, monitor heart rate, reduce caffeine intake, manage stress.</p>
+          <p><strong>Medications:</strong> Anticoagulants, beta-blockers, anti-arrhythmic medications.</p>
+          <a class="external-link" href="https://www.cdc.gov/ncbddd/stroke/facts.html" target="_blank">Learn More at CDC</a>
+        </div>
+    
+        <!-- Neurological Diseases -->
+        <div class="disease-card neurological">
+          <h2>Stroke</h2>
+          <p><strong>Description:</strong> A stroke occurs when blood flow to part of the brain is blocked, leading to brain cell death.</p>
+          <p><strong>General Symptoms:</strong> Sudden numbness or weakness in the face, arm, or leg (especially on one side), trouble speaking, confusion.</p>
+          <p><strong>General Precautions:</strong> Control blood pressure, reduce cholesterol, avoid smoking, maintain a healthy weight.</p>
+          <p><strong>Medications:</strong> Antiplatelet drugs, thrombolytics (for certain types of stroke).</p>
+          <a class="external-link" href="https://www.cdc.gov/stroke/facts.htm" target="_blank">Learn More at CDC</a>
+        </div>
+    
+        <div class="disease-card neurological">
+          <h2>Epilepsy</h2>
+          <p><strong>Description:</strong> A neurological disorder that causes recurrent seizures due to abnormal brain activity.</p>
+          <p><strong>General Symptoms:</strong> Uncontrolled shaking or jerking movements, confusion, loss of consciousness.</p>
+          <p><strong>General Precautions:</strong> Avoid triggers like flashing lights or stress, follow treatment plans, wear safety gear if needed.</p>
+          <p><strong>Medications:</strong> Anticonvulsants, sometimes surgery or a special diet may be prescribed.</p>
+          <a class="external-link" href="https://www.epilepsy.com" target="_blank">Learn More at Epilepsy Foundation</a>
+        </div>
+    
+        <div class="disease-card neurological">
+          <h2>Parkinson’s Disease</h2>
+          <p><strong>Description:</strong> A progressive nervous system disorder affecting movement due to a lack of dopamine in the brain.</p>
+          <p><strong>General Symptoms:</strong> Tremors, stiffness, difficulty with balance, slow movement, facial expression changes.</p>
+          <p><strong>General Precautions:</strong> Physical therapy, speech therapy, avoid falls, maintain a balanced diet.</p>
+          <p><strong>Medications:</strong> Levodopa, dopamine agonists, MAO-B inhibitors, physical therapy.</p>
+          <a class="external-link" href="https://www.parkinson.org" target="_blank">Learn More at Parkinson's Foundation</a>
+        </div>
+    
+        <!-- Skin Diseases -->
+        <div class="disease-card skin">
+          <h2>Eczema (Atopic Dermatitis)</h2>
+          <p><strong>Description:</strong> An inflammatory skin condition causing itching, redness, and sometimes blistering or crusting.</p>
+          <p><strong>General Symptoms:</strong> Red, itchy patches, dryness, swelling, sometimes cracks or bleeding in the skin.</p>
+          <p><strong>General Precautions:</strong> Use mild soap, moisturize regularly, avoid triggers, wear soft fabrics.</p>
+          <p><strong>Medications:</strong> Topical corticosteroids, antihistamines, moisturizing creams.</p>
+          <a class="external-link" href="https://www.niams.nih.gov/health-topics/eczema" target="_blank">Learn More at NIAMS</a>
+        </div>
+    
+        <div class="disease-card skin">
+          <h2>Psoriasis</h2>
+          <p><strong>Description:</strong> An autoimmune condition that causes the rapid build-up of skin cells, forming scaly patches.</p>
+          <p><strong>General Symptoms:</strong> Red patches with thick, silvery scales, dry and cracked skin that may bleed, itching, burning sensations.</p>
+          <p><strong>General Precautions:</strong> Avoid triggers, moisturize, reduce stress, avoid smoking and alcohol.</p>
+          <p><strong>Medications:</strong> Topical treatments, biologics, phototherapy, systemic treatments.</p>
+          <a class="external-link" href="https://www.psoriasis.org" target="_blank">Learn More at National Psoriasis Foundation</a>
+        </div>
+    
+        <div class="disease-card skin">
+          <h2>Acne</h2>
+          <p><strong>Description:</strong> A skin condition that occurs when hair follicles become clogged with oil, dead skin cells, and bacteria.</p>
+          <p><strong>General Symptoms:</strong> Pimples, blackheads, whiteheads, cysts, and scarring, often on the face, back, and chest.</p>
+          <p><strong>General Precautions:</strong> Regularly wash the skin, avoid touching the face, eat a balanced diet, reduce stress.</p>
+          <p><strong>Medications:</strong> Topical retinoids, benzoyl peroxide, antibiotics, oral contraceptives for hormonal acne.</p>
+          <a class="external-link" href="https://www.aad.org" target="_blank">Learn More at American Academy of Dermatology</a>
+        </div>
+    
+        <!-- Digestive Diseases -->
+        <div class="disease-card digestive">
+          <h2>Gastroesophageal Reflux Disease (GERD)</h2>
+          <p><strong>Description:</strong> A digestive disorder where stomach acid or bile irritates the food pipe lining.</p>
+          <p><strong>General Symptoms:</strong> Heartburn, regurgitation, difficulty swallowing, chest pain.</p>
+          <p><strong>General Precautions:</strong> Eat smaller meals, avoid lying down after eating, limit alcohol and caffeine, maintain a healthy weight.</p>
+          <p><strong>Medications:</strong> Antacids, proton pump inhibitors, H2 blockers, prokinetics.</p>
+          <a class="external-link" href="https://www.mayoclinic.org/diseases-conditions/gerd/symptoms-causes/syc-20361940" target="_blank">Learn More at Mayo Clinic</a>
+        </div>
+    
+        <div class="disease-card digestive">
+          <h2>Irritable Bowel Syndrome (IBS)</h2>
+          <p><strong>Description:</strong> A functional gastrointestinal disorder causing abdominal pain and altered bowel habits.</p>
+          <p><strong>General Symptoms:</strong> Abdominal pain, bloating, diarrhea, constipation, mucus in stool.</p>
+          <p><strong>General Precautions:</strong> Avoid high-fat foods, keep a food diary, reduce stress, exercise regularly.</p>
+          <p><strong>Medications:</strong> Fiber supplements, antispasmodics, laxatives, anti-diarrheal medications, antidepressants.</p>
+          <a class="external-link" href="https://www.ibs.org" target="_blank">Learn More at IBS Foundation</a>
+        </div>
+    
+        <div class="disease-card digestive">
+          <h2>Peptic Ulcer Disease</h2>
+          <p><strong>Description:</strong> Sores that develop in the lining of the stomach, small intestine, or esophagus due to stomach acid.</p>
+          <p><strong>General Symptoms:</strong> Burning stomach pain, bloating, nausea, heartburn, indigestion.</p>
+          <p><strong>General Precautions:</strong> Avoid spicy foods, alcohol, and smoking, eat smaller meals, manage stress.</p>
+          <p><strong>Medications:</strong> Proton pump inhibitors, H2 blockers, antibiotics (for H. pylori infection), antacids.</p>
+          <a class="external-link" href="https://www.mayoclinic.org/diseases-conditions/peptic-ulcer/symptoms-causes/syc-20350902" target="_blank">Learn More at Mayo Clinic</a>
+        </div>
+    
+        <div class="disease-card respiratory">
+            <h2>Asthma</h2>
+            <p><strong>Description:</strong> A chronic condition that causes inflammation and narrowing of the airways, leading to difficulty breathing.</p>
+            <p><strong>General Symptoms:</strong> Wheezing, shortness of breath, chest tightness, coughing, especially at night or early morning.</p>
+            <p><strong>General Precautions:</strong> Avoid triggers (dust, pollen, smoke), take prescribed inhalers, monitor air quality, stay active.</p>
+            <p><strong>Medications:</strong> Inhaled corticosteroids, beta-agonists, leukotriene modifiers, oral steroids during flare-ups.</p>
+            <a class="external-link" href="https://www.cdc.gov/asthma" target="_blank">Learn More at CDC</a>
+          </div>
+      
+          <div class="disease-card respiratory">
+            <h2>Chronic Obstructive Pulmonary Disease (COPD)</h2>
+            <p><strong>Description:</strong> A progressive lung disease that makes it difficult to breathe, often caused by long-term exposure to irritants like smoking.</p>
+            <p><strong>General Symptoms:</strong> Shortness of breath, chronic cough, mucus production, wheezing.</p>
+            <p><strong>General Precautions:</strong> Quit smoking, use oxygen therapy, avoid respiratory infections, stay active.</p>
+            <p><strong>Medications:</strong> Bronchodilators, corticosteroids, oxygen therapy, antibiotics (during exacerbations).</p>
+            <a class="external-link" href="https://www.cdc.gov/copd" target="_blank">Learn More at CDC</a>
+          </div>
+      
+          <!-- Endocrine Diseases -->
+          <div class="disease-card endocrine">
+            <h2>Diabetes Mellitus (Type 2)</h2>
+            <p><strong>Description:</strong> A chronic condition where the body becomes resistant to insulin, leading to high blood sugar levels.</p>
+            <p><strong>General Symptoms:</strong> Increased thirst, frequent urination, fatigue, blurred vision, slow-healing wounds.</p>
+            <p><strong>General Precautions:</strong> Maintain a healthy diet, exercise regularly, monitor blood sugar levels, avoid excessive sugar intake.</p>
+            <p><strong>Medications:</strong> Metformin, sulfonylureas, insulin, GLP-1 receptor agonists.</p>
+            <a class="external-link" href="https://www.cdc.gov/diabetes" target="_blank">Learn More at CDC</a>
+          </div>
+      
+          <div class="disease-card endocrine">
+            <h2>Hypothyroidism</h2>
+            <p><strong>Description:</strong> A condition where the thyroid gland doesn't produce enough thyroid hormones, leading to a slow metabolism.</p>
+            <p><strong>General Symptoms:</strong> Fatigue, weight gain, cold intolerance, constipation, dry skin.</p>
+            <p><strong>General Precautions:</strong> Take thyroid medication as prescribed, monitor hormone levels, maintain a balanced diet.</p>
+            <p><strong>Medications:</strong> Levothyroxine (synthetic thyroid hormone).</p>
+            <a class="external-link" href="https://www.cdc.gov/ncbddd/hypothyroidism" target="_blank">Learn More at CDC</a>
+          </div>
+      
+          <!-- Musculoskeletal Diseases -->
+          <div class="disease-card musculoskeletal">
+            <h2>Osteoarthritis</h2>
+            <p><strong>Description:</strong> A degenerative joint disease where the cartilage in the joints wears down over time, leading to pain and stiffness.</p>
+            <p><strong>General Symptoms:</strong> Joint pain, swelling, decreased range of motion, stiffness after periods of inactivity.</p>
+            <p><strong>General Precautions:</strong> Maintain a healthy weight, stay active, use joint protection techniques, avoid excessive strain.</p>
+            <p><strong>Medications:</strong> NSAIDs, acetaminophen, corticosteroid injections, physical therapy.</p>
+            <a class="external-link" href="https://www.cdc.gov/arthritis" target="_blank">Learn More at CDC</a>
+          </div>
+      
+          <div class="disease-card musculoskeletal">
+            <h2>Rheumatoid Arthritis</h2>
+            <p><strong>Description:</strong> An autoimmune disorder that causes inflammation in the joints, often leading to deformities and pain.</p>
+            <p><strong>General Symptoms:</strong> Joint pain, swelling, stiffness (especially in the morning), fatigue, and loss of appetite.</p>
+            <p><strong>General Precautions:</strong> Early treatment with disease-modifying drugs (DMARDs), regular physical activity, joint protection strategies.</p>
+            <p><strong>Medications:</strong> Methotrexate, NSAIDs, corticosteroids, biologics, DMARDs.</p>
+            <a class="external-link" href="https://www.rheumatology.org" target="_blank">Learn More at American College of Rheumatology</a>
+          </div>
+      
+          <!-- Urinary Diseases -->
+          <div class="disease-card urinary">
+            <h2>Urinary Tract Infection (UTI)</h2>
+            <p><strong>Description:</strong> A bacterial infection that affects any part of the urinary system, including the kidneys, bladder, and urethra.</p>
+            <p><strong>General Symptoms:</strong> Painful urination, frequent urination, cloudy urine, lower abdominal pain.</p>
+            <p><strong>General Precautions:</strong> Drink plenty of water, urinate after intercourse, wipe from front to back, avoid irritants like scented hygiene products.</p>
+            <p><strong>Medications:</strong> Antibiotics such as nitrofurantoin, trimethoprim-sulfamethoxazole.</p>
+            <a class="external-link" href="https://www.cdc.gov/antibiotic-use/urinary-tract-infections.html" target="_blank">Learn More at CDC</a>
+          </div>
+      
+          <div class="disease-card urinary">
+            <h2>Chronic Kidney Disease (CKD)</h2>
+            <p><strong>Description:</strong> A long-term condition where the kidneys gradually lose function over time, leading to kidney failure.</p>
+            <p><strong>General Symptoms:</strong> Fatigue, swelling in the legs and ankles, reduced urine output, difficulty concentrating, nausea.</p>
+            <p><strong>General Precautions:</strong> Control blood pressure, limit salt intake, manage diabetes, stay hydrated, avoid nephrotoxic drugs.</p>
+            <p><strong>Medications:</strong> ACE inhibitors, angiotensin receptor blockers (ARBs), diuretics, erythropoiesis-stimulating agents.</p>
+            <a class="external-link" href="https://www.cdc.gov/kidneydisease" target="_blank">Learn More at CDC</a>
+          </div>
+    
+        <!-- Add more disease cards here following the same structure -->
+    </div>
+    
+    
+      </div>
+    
+    
+    <!-- External Links for General Disease Information -->
+    <div class="contact-section">
+        <img src="imgs/logo.png" alt="" width="90px">
+        <div class="contact-content">
+         
+          <div class="contact-info">
+            <div class="foot">
+              <ul>
+                <li><a href="login.html">Patient’s Corner</a></li>
+                <li><a href="achievement.html">Achievements</a></li>
+                <li><a href="library.html">Health Library</a></li>
+                <li><a href="#" id="openContactPopup">Contact Us</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+            </div>
+            <p><strong>Registration No:</strong>XXXXXXXXXXX</p>
+            <p><strong>Address:</strong>
+              Manas Square, Opp - Sai Tower,
+              Sugamau, Indira Nagar,<br>
+              Lucknow, Uttar Pradesh, India
+            </p>
+            <p><strong>Phone:</strong>
+              <a href="tel:+917518351847" >+91-7518351847</a><br>
+              <a href="tel:+919889065072" style="margin-left: 5%;">+91-9889065072</a>
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    
+    <script>
+      function filterDiseases() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const cards = document.querySelectorAll('.disease-card');
+    
+        cards.forEach(card => {
+          const text = card.innerText.toLowerCase();
+          card.style.display = text.includes(input) ? '' : 'none';
+        });
+      }
+    
+      function filterCategory(category) {
+        const cards = document.querySelectorAll('.disease-card');
+        const tabs = document.querySelectorAll('.tab');
+    
+        tabs.forEach(tab => tab.classList.remove('active'));
+        event.target.classList.add('active');
+    
+        cards.forEach(card => {
+          if (category === 'all') {
+            card.style.display = '';
+          } else {
+            card.style.display = card.classList.contains(category) ? '' : 'none';
+          }
+        });
+    
+        // Reset search
+        document.getElementById('searchInput').value = '';
+      }
+    </script>
+
+    <script>
+        document.getElementById("openPopup").onclick = function () {
+            document.getElementById("ambulancePopup").style.display = "block";
+            getLocation();
+        };
+
+        document.querySelector(".close").onclick = function () {
+            document.getElementById("ambulancePopup").style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("ambulancePopup")) {
+                document.getElementById("ambulancePopup").style.display = "none";
+            }
+            if (event.target == document.getElementById("contactPopup")) {
+                document.getElementById("contactPopup").style.display = "none";
+            }
+            if (event.target == document.getElementById("appointmentPopup")) {
+                document.getElementById("appointmentPopup").style.display = "none";
+            }
+        };
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, { timeout: 10000 });
+            } else {
+                showBlankMap();
+                document.getElementById("locationText").innerHTML = "Geolocation not supported by browser.";
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            document.getElementById("locationText").innerHTML = `Your Location: (${lat.toFixed(4)}, ${lon.toFixed(4)})`;
+            const mapIframe = `<iframe width="100%" height="300" style="border:0" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=${lat},${lon}&hl=es;z=14&output=embed"></iframe>`;
+            document.getElementById("map").innerHTML = mapIframe;
+        }
+
+        function showError(error) {
+            document.getElementById("locationText").innerHTML = "Location not available.";
+            showBlankMap();
+        }
+
+        function showBlankMap() {
+            const blankIframe = `<iframe width="100%" height="300" style="border:0" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=0,0&hl=es;z=1&output=embed"></iframe>`;
+            document.getElementById("map").innerHTML = blankIframe;
+        }
+
+        document.getElementById("openContactPopup").onclick = function () {
+            document.getElementById("contactPopup").style.display = "block";
+        };
+
+        document.querySelector(".close-contact").onclick = function () {
+            document.getElementById("contactPopup").style.display = "none";
+        };
+
+        document.getElementById("openAppointmentPopup").onclick = function () {
+            document.getElementById("appointmentPopup").style.display = "block";
+        };
+
+        document.querySelector(".close-appointment").onclick = function () {
+            document.getElementById("appointmentPopup").style.display = "none";
+        };
+
+        document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("patientName").value;
+            const phone = document.getElementById("patientPhone").value;
+            const message = document.getElementById("patientMessage").value;
+            const date = document.getElementById("date").value;
+            const shift = document.getElementById("shift").value;
+            console.log("Appointment Details:", { name, phone, message, date, shift });
+            alert("Appointment booked successfully!");
+            this.reset();
+            document.getElementById("appointmentPopup").style.display = "none";
+        });
+    </script>
+</body>
+</html>

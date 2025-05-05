@@ -258,25 +258,101 @@ main{
     to {opacity: 1}
   }
   /************Choose us**********************/
-  .chooseus p{
-    margin-top: 50px;
-    color: #666666;
-    width: 80%;
-  }
-  .chooseus{
-    display: flex;
-    justify-content: space-between;
-  }
-  .chooseus h2{
-    margin: 0px;
-    padding: 0px;
-  }
-  .chooseus img{
-    border-radius: 8px;
-    margin:0 0 0 30px;
+
+  .what-we-offer { /* reduced top & bottom padding */
+    text-align: left;
   }
   
+  .what-we-offer h3 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 10px; /* reduced spacing under heading */
+  }
+  
+  .content-container {
+    display: flex;
+  }
+  
+  .offerings {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+  }
+  
+  .offer-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0px 15px 3px rgba(4, 141, 221, 0.384);
+    width: 230px;
+    height: 185px;
+    
+    align-items: center;
+    text-align: center;
+  }
+  i{
+    font-size: 50px;
+    margin-top: 40px;
+  }
+  .offer-item p {
+    font-size: 25px;
+    font-family:  "Hanken Grotesk", sans-serif; 
+
+  }
+
+  
+  .image-container img {
+    border-radius: 8px;
+  }
+
 /********************************************************/
+.contact-section {
+  padding: 40px 20px;
+  background-color: #CFCFCF;
+  text-align: center;
+}
+.contact-section img{
+  border-radius: 30%;
+}
+
+.foot ul{
+  display: flex;
+  list-style: none;
+  margin-left: 20%;
+  
+}
+.contact-info a{
+  color: #666666;
+  text-decoration: none;
+  padding: 10px;
+}
+.contact-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  flex: 1 1 300px;
+  font-size: 16px;
+  text-align: center;
+  color: #333;
+  line-height: 1.8;
+}
+
+
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+
 /****************Sign in ******************************/
 
 .bodies{
@@ -313,8 +389,8 @@ form{
     flex-direction: column;
 }
 input{
-  width: 442px;
-  height: 45px;
+    width: 500px;
+    height: 78px;
     border-radius: 8px;
     border:1px solid #666666;
 }
@@ -322,8 +398,8 @@ label{
     padding: 10px;
 }
 .login button{
-  margin-top: 40px;
-  width: 450px;
+    margin-top: 20px;
+    width: 506px;
     height: 48px;
     background-color: #048DDD;
     border: none;
